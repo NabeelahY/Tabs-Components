@@ -14,15 +14,15 @@ class TabLink {
     this.tabItem = new TabItem(this.itemElement);
 
     // Add a click event listener on this instance, calling the select method on click
-    this.element.addEventListener('click', () => this.select())
+    // this.element.addEventListener('click', () => this.select())
 
 
   };
 
   select() {
-    this.deselect();
+    // this.deselect()
     // Add a class named "tabs-link-selected" to this link
-    this.element.classList.add('tabs-item-selected');
+    this.element.classList.add('tabs-link-selected');
 
     // Call the select method on the item associated with this link
     new TabItem(this.itemElement).select()
@@ -47,7 +47,7 @@ class TabItem {
   }
 
   select() {
-    this.deselect();
+    // this.deselect()
     // Add a class named "tabs-item-selected" to this element
     this.element.classList.add('tabs-item-selected')
   }
@@ -65,8 +65,21 @@ class TabItem {
 
 class Tabs {
   constructor(tab) {
-    this.tab = new TabLink(tab);
-    console.log(this.tab)
+    this.tab = tab;
+    this.handler();
+  }
+
+  handler() {
+    this.tab.forEach(item => {
+      const link = new TabLink(item);
+      // Add a click event listener on this instance, calling the select method on click
+      link.element.addEventListener('click', () => {
+        link.deselect();
+        link.select();
+        link.tabItem.deselect();
+        link.tabItem.select();
+      })
+    })
   }
 }
 
@@ -82,4 +95,5 @@ class Tabs {
 
 const links = document.querySelectorAll('.tabs-link');
 
-links.forEach(link => new Tabs(link));
+//links.forEach(link => new Tabs(link));
+new Tabs(links);
