@@ -116,11 +116,71 @@ body {
   border-radius: 10px;
   overflow: hidden;
 }
-.section .box {
-  padding: 40px;
+.section .carousel {
+  transform-style: preserve-3d;
+  margin: 0 auto;
 }
-.section .box .box-title {
-  font-size: 24px;
-  padding-bottom: 10px;
-  font-weight: bold;
+.section .carousel .carousel-photo {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  margin: auto;
+  padding: 1rem 4rem;
+  z-index: 100;
+  transition: transform 0.5s, opacity 0.5s, z-index 0.5s;
+}
+.section .carousel .carousel-photo.initial,
+.section .carousel .carousel-photo.active {
+  opacity: 1;
+  position: relative;
+  z-index: 900;
+}
+.section .carousel .carousel-photo.prev,
+.section .carousel .carousel-photo.next {
+  z-index: 800;
+}
+.section .carousel .carousel-photo.prev {
+  transform: translateX(-100%);
+  /* Move 'prev' item to the left */
+}
+.section .carousel .carousel-photo.next {
+  transform: translateX(100%);
+  /* Move 'next' item to the right */
+}
+.section .carousel .carousel-button.prev,
+.section .carousel .carousel-button.next {
+  position: absolute;
+  top: 50%;
+  width: 3rem;
+  height: 3rem;
+  background-color: #FFF;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 1001;
+  /* Sit on top of everything */
+  border: 1px solid black;
+}
+.section .carousel .carousel-button.prev {
+  left: 0;
+}
+.section .carousel .carousel-button.next {
+  right: 0;
+}
+.section .carousel .carousel-button.prev::after,
+.section .carousel .carousel-button.next::after {
+  content: " ";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  top: 50%;
+  left: 54%;
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
+  transform: translate(-50%, -50%) rotate(135deg);
+}
+.section .carousel .carousel-button.next::after {
+  left: 47%;
+  transform: translate(-50%, -50%) rotate(-45deg);
 }
