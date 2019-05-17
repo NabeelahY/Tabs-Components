@@ -39,7 +39,7 @@ class Carousel {
 
     movePrev() {
         if (!this.moving) {
-            if (this.slide === this.imgLength - 1) {
+            if (this.slide === 0) {
                 this.slide = this.imgLength - 1
             } else {
                 this.slide--
@@ -60,12 +60,12 @@ class Carousel {
         if (!this.moving) {
             this.disableMove();
             
-            let newPrev = this.slide - 1;
-            let newNext = this.slide + 1;
-            let oldPrev = this.slide - 2;
-            let oldNext = this.slide + 2;
-
             if (this.imgLength > 3) {
+                let newPrev = this.slide - 1;
+                let newNext = this.slide + 1;
+                let oldPrev = this.slide - 2;
+                let oldNext = this.slide + 2;
+
                 if (newPrev <= 0) {
                     oldPrev = this.imgLength - 1
                 } else if (newNext >= this.imgLength - 1) {
